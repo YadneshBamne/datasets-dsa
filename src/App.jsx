@@ -238,7 +238,7 @@ const App = () => {
             {selectedCategory !== "All" && (
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-[#191A1A] z-10"></div>
             )}
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#B0B0B0]" />
+            <Filter className="absolute left-6 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#B0B0B0]" />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
