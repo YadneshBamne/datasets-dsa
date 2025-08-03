@@ -211,7 +211,7 @@ const App = () => {
             <Database className="w-8 h-8 text-blue-400" />
           </div>
           <h1 className="text-4xl font-bold text-white text-start">
-            Avaliable Datasets
+            Datasets
           </h1>
           
         </div>
