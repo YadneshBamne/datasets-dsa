@@ -14,6 +14,7 @@ const datasets = [
     size: "8.8k rows",
     features: 12,
     difficulty: "Beginner",
+    fileType: "csv", 
     questions: [
       "How many movies vs TV shows are there on Netflix?",
       "How many titles were added to Netflix each year?",
@@ -36,6 +37,7 @@ const datasets = [
     size: "15k rows",
     features: 10,
     difficulty: "Intermediate",
+    fileType: "xlsx", // Added file type identifier
     questions: [
       "What is the total sales revenue generated in the year 2023?",
       "What are the monthly sales trends across all platforms? Which month had the highest sales?",
@@ -58,6 +60,7 @@ const datasets = [
     size: "23k rows",
     features: 16,
     difficulty: "Intermediate",
+    fileType: "xlsx", // Added file type identifier
     questions: [
       "What is the total number of cars sold?",
       "What is the total sales amount (Price) for all cars sold?",
@@ -80,6 +83,7 @@ const datasets = [
     size: "8.5k rows",
     features: 12,
     difficulty: "Beginner",
+    fileType: "xlsx", // Added file type identifier
     questions: [
       "What is the total sales across all items?",
       "Which outlet type has the highest sales?",
@@ -102,6 +106,7 @@ const datasets = [
     size: "816 rows",
     features: 18,
     difficulty: "Intermediate",
+    fileType: "xlsx", // Added file type identifier
     questions: [
       "How many IPL matches were played each season?",
       "Which team has won the most matches overall?",
@@ -124,6 +129,7 @@ const datasets = [
     size: "1k rows",
     features: 15,
     difficulty: "Beginner",
+    fileType: "csv", // Added file type identifier
     questions: [
       "What is the total number of posts per platform?",
       "Which region has the highest total views?",
@@ -254,7 +260,7 @@ const App = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const handleDownload = async (datasetUrl, datasetName, datasetId) => {
+  const handleDownload = async (datasetUrl, datasetName, datasetId, fileType) => {
     setDownloadingId(datasetId);
     
     try {
@@ -269,9 +275,9 @@ const App = () => {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       
-      // Create download link
+      // Create download link with correct file extension
       const link = document.createElement('a');
-      const filename = `${datasetName.replace(/\s+/g, '_')}.csv`;
+      const filename = `${datasetName.replace(/\s+/g, '_')}.${fileType}`;
       link.href = url;
       link.download = filename;
       link.style.display = 'none';
@@ -381,7 +387,7 @@ const App = () => {
               <div className="px-6 py-4 bg-[#1A1A1A] rounded-b-xl border-t border-[#333] flex-shrink-0">
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button
-                    onClick={() => handleDownload(ds.dataset, ds.name, ds.id)}
+                    onClick={() => handleDownload(ds.dataset, ds.name, ds.id, ds.fileType)}
                     disabled={downloadingId === ds.id}
                     className="flex items-center justify-center cursor-pointer gap-2 px-3 py-1.5 bg-[#333] hover:bg-[#404040] text-white rounded-md transition-all duration-200 flex-1 group/download text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   >
